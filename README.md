@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/noduslabs/infranodus)
+
 ## InfraNodus is a text-to-network visualization tool, based on Neo4J, Node.Js and Sigma.Js.
 
 ### InfraNodus provides the fastest way to create a graph using plain text, #hashtags or @mentions. [Try it online](https://infranodus.com) (advanced Enterprise version with more functionality) or install your local version.
