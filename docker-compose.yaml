@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  ui:
+    build: .
+    environment:
+      - UID=1000
+      - GUID=1000
+    volumes:
+      - $PWD:/usr/local/src
+    ports:
+      - 3000:3000
+  db:
+    image: neo4j:3.5.8
+    environment:
+      - UID=1000
+      - GUID=1000
+      - NEO4JLABS_PLUGINS=["apoc"]
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_apoc_trigger_enabled=true
+    volumes:
+      - $HOME/infranodus/data:/data
+      - $HOME/infranodus/import:/var/lib/neo4j/import
+      - $PWD/deps/plugins:/var/lib/neo4j/plugins
+      - $PWD/db/init:/init
+      - $PWD/db/conf:/var/lib/neo4j/conf
+      - $PWD/vagrant:/vagrant
+    ports:
+      - 7474:7474 
+      - 7687:7687
