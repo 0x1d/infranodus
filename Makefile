@@ -1,20 +1,20 @@
+SHELL=/bin/bash
 NEO4J_VERSION?=3.5.8
 NEO4J_APOC_VERSION?=3.5.0.4
 NEO4J_DEFAULT_USER?=neo4j
 NEO4J_DEFAULT_PASSWORD?=neo4j
 NEO4J_NEW_PASSWORD?=Really_Secure_Local_Db_Password
 
+SOURCE_APP = source stack.sh ;
+
 init:
-	cp config.json.sample config.json
-	touch views/statsabove.ejs
-	touch views/statsbelow.ejs
-	touch views/statsheader.ejs
+	@$(SOURCE_APP) app:init
 
 up: init deps plugins
 	docker-compose up --remove-orphans
 
 bootstrap:
-	./stack.sh db:bootstrap ${NEO4J_DEFAULT_USER} ${NEO4J_DEFAULT_PASSWORD} ${NEO4J_NEW_PASSWORD}
+	$(SOURCE_APP) db:bootstrap ${NEO4J_DEFAULT_USER} ${NEO4J_DEFAULT_PASSWORD} ${NEO4J_NEW_PASSWORD}
 
 deps:
 	@mkdir deps
