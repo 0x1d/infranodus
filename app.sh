@@ -1,20 +1,21 @@
 #!/bin/bash
 
-function stack:init {
+function app:init {
   ui:init
 }
 
-function stack:install {
+function app:install {
   ui:install
   db:install
 }
 
-function stack:start {
+function app:start {
   db:start
   ui:start
 }
 
 function ui:init {
+  cp config.json.sample config.json
   touch views/statsabove.ejs
   touch views/statsbelow.ejs
   touch views/statsheader.ejs
@@ -43,8 +44,8 @@ function db:bootstrap {
   docker-compose exec bash -c "/vagrant/setup-neo4j.sh $1 $2 $3"
 }
 
+function vagrant:run {
+    vagrant up ; vagrant ssh -- -t 'cd /vagrant; node app.js'
+}
 
-
-
-
-${@:-info}
+#${@:-info}

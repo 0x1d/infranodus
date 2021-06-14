@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-DEFAULT_USERNAME="neo4j"
-DEFAULT_PASSWORD="neo4j"
-NEW_PASSWORD="Really_Secure_Local_Db_Password"
+DEFAULT_USERNAME=$1
+DEFAULT_PASSWORD=$2
+NEW_PASSWORD=$3
 
 # Update Neo4j config to support APOC, then restart Neo4j
 sudo su neo4j -c 'echo "apoc.trigger.enabled=true" >> /etc/neo4j/neo4j.conf'
