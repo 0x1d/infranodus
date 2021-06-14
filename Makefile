@@ -1,29 +1,36 @@
 SHELL=/bin/bash
-NEO4J_VERSION?=3.5.8
-NEO4J_APOC_VERSION?=3.5.0.4
-NEO4J_DEFAULT_USER?=neo4j
-NEO4J_DEFAULT_PASSWORD?=neo4j
-NEO4J_NEW_PASSWORD?=Really_Secure_Local_Db_Password
-SOURCE_APP = source app.sh ;
 
-it: init deps plugins
-so: up
+ctrl = source app.sh ;
 
-init:
-	@$(SOURCE_APP) app:init
+default: info
 
-up:
-	docker-compose up --remove-orphans
+it: app
+so: run
+not: stop
+
+info: .env
+	@$(ctrl) info
+
+.env:
+	@$(ctrl) env:init
+
+app: info plugins
+	@$(ctrl) app:init
+
+run:
+	@$(ctrl) app:run
+
+stop:
+	@$(ctrl) app:stop
+
+dev:
+	@$(ctrl) vagrant:run
 
 #TODO run when neo4j service is up
 bootstrap:
-	$(SOURCE_APP) db:bootstrap ${NEO4J_DEFAULT_USER} ${NEO4J_DEFAULT_PASSWORD} ${NEO4J_NEW_PASSWORD}
+	@$(ctrl) db:bootstrap
 
 deps:
 	@mkdir deps
 
-plugins: deps/plugins/apoc-${NEO4J_APOC_VERSION}-all.jar
-
-deps/plugins/apoc-${NEO4J_APOC_VERSION}-all.jar: deps
-	wget --quiet --directory-prefix=deps/plugins/ \
-		https://github.com/neo4j-contrib/neo4j-apoc-procedures/releases/download/${NEO4J_APOC_VERSION}/apoc-${NEO4J_APOC_VERSION}-all.jar
+include plugins.mk

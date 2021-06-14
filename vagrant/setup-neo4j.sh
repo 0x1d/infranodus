@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
 
-DEFAULT_USERNAME=$1
-DEFAULT_PASSWORD=$2
-NEW_PASSWORD=$3
-
-# Update Neo4j config to support APOC, then restart Neo4j
-sudo su neo4j -c 'echo "apoc.trigger.enabled=true" >> /etc/neo4j/neo4j.conf'
-sudo service neo4j restart
-sleep 15s   # Wait 15s to let the neo4j service restart!
-
 # Change the default neo4j password
 # (default is 'neo4j', but needs changing before schema changes can be made!)
 echo "CALL dbms.changePassword('$NEW_PASSWORD');" | cypher-shell -u $DEFAULT_USERNAME -p $DEFAULT_PASSWORD

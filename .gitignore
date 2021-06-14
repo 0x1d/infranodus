@@ -15,4 +15,6 @@ npm-debug.log*
 # Vagrant
 .vagrant
 
+# Docker
 deps
+.env
