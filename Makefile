@@ -1,27 +1,32 @@
 SHELL=/bin/bash
 
-ctrl = source app.sh ;
+ctrl = source ctrl.sh ;
 
-default: info
+default: app
 
 it: app
 so: run
 not: stop
+clean: remove
+
+app: .env info plugins
+	init
 
 info: .env
-	@$(ctrl) info
+	@$(ctrl) $@
 
-.env:
-	@$(ctrl) env:init
+init:
+	@$(ctrl) env:$@
+	@$(ctrl) app:$@
 
-app: info plugins
-	@$(ctrl) app:init
+run: .env
+	@$(ctrl) app:$@
 
-run:
-	@$(ctrl) app:run
+stop: .env
+	@$(ctrl) app:$@
 
-stop:
-	@$(ctrl) app:stop
+remove: .env
+	@$(ctrl) app:$@
 
 dev:
 	@$(ctrl) vagrant:run
@@ -29,8 +34,5 @@ dev:
 #TODO run when neo4j service is up
 bootstrap:
 	@$(ctrl) db:bootstrap
-
-deps:
-	@mkdir deps
 
 include plugins.mk

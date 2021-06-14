@@ -30,6 +30,10 @@ function app:stop {
     docker-compose stop
 }
 
+function app:remove {
+    docker-compose down
+}
+
 function db:bootstrap {
     chmod +x vagrant/setup-neo4j.sh
     docker-compose exec db bash -c "/vagrant/setup-neo4j.sh"
@@ -38,3 +42,5 @@ function db:bootstrap {
 function vagrant:run {
     vagrant up ; vagrant ssh -- -t 'cd /vagrant; node app.js'
 }
+
+${@:-info}
