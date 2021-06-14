@@ -4,13 +4,16 @@ NEO4J_DEFAULT_USER?=neo4j
 NEO4J_DEFAULT_PASSWORD?=neo4j
 NEO4J_NEW_PASSWORD?=Really_Secure_Local_Db_Password
 
+it: init deps plugins
+so: up
+
 init:
 	cp config.json.sample config.json
 	touch views/statsabove.ejs
 	touch views/statsbelow.ejs
 	touch views/statsheader.ejs
 
-up: init deps plugins
+up:
 	docker-compose up --remove-orphans
 
 bootstrap:
