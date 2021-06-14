@@ -9,8 +9,7 @@ so: run
 not: stop
 clean: remove
 
-app: .env info plugins
-	init
+app: init info plugins
 
 info: .env
 	@$(ctrl) $@
@@ -29,7 +28,7 @@ remove: .env
 	@$(ctrl) app:$@
 
 dev:
-	@$(ctrl) vagrant:run
+	@$(ctrl) dev:run
 
 #TODO run when neo4j service is up
 bootstrap:

@@ -3,6 +3,7 @@
 APP=InfraNodus
 
 function info {
+    clear
     echo "-------------------------------------------"
     echo $APP
     echo "-------------------------------------------"
@@ -24,6 +25,7 @@ function app:init {
 
 function app:run {
     docker-compose up --remove-orphans --force-recreate --detach
+    watch docker ps
 }
 
 function app:stop {
@@ -39,7 +41,7 @@ function db:bootstrap {
     docker-compose exec db bash -c "/vagrant/setup-neo4j.sh"
 }
 
-function vagrant:run {
+function dev:run {
     vagrant up ; vagrant ssh -- -t 'cd /vagrant; node app.js'
 }
 
