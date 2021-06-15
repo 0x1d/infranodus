@@ -9,16 +9,20 @@ function info {
     echo "-------------------------------------------"
     cat .env | grep VERSION
     echo "-------------------------------------------"
+    sed -n 's/^##//p' ctrl.sh
+    echo "-------------------------------------------"
 }
 
+## env:init     Initialize new environment
 function env:init {
+    mkdir -p import
     cp default.env .env
     cp config.json.sample config.json
     touch views/statsabove.ejs
     touch views/statsbelow.ejs
     touch views/statsheader.ejs
 }
-
+## app:init         Initialize new app
 function app:init {
     docker-compose build
 }
@@ -37,8 +41,9 @@ function app:remove {
 }
 
 function db:bootstrap {
-    chmod +x vagrant/setup-neo4j.sh
-    docker-compose exec db bash -c "/vagrant/setup-neo4j.sh"
+    cp vagrant/setup-neo4j.sh import
+    chmod +x import/setup-neo4j.sh
+    docker-compose exec db bash -c "./import/setup-neo4j.sh"
 }
 
 function dev:run {

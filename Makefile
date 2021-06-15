@@ -6,8 +6,8 @@ default: app
 
 it: app
 so: run
-not: stop
-clean: remove
+not: remove
+stop: stop
 
 app: init info plugins
 
