@@ -1,31 +1,35 @@
-## InfraNodus is a text-to-network visualization tool, based on Neo4J, Node.Js and Sigma.Js.
+## InfraNodus is a text-to-network visualization tool, based on Neo4J Graph Database, Node.Js, Sigma.Js, and Graphology.
 
-### InfraNodus provides the fastest way to create a graph using plain text, #hashtags or @mentions. [Try it online](https://infranodus.com) (advanced Enterprise version with more functionality) or install your local version.
+### InfraNodus provides the fastest way to create a graph using plain text, #hashtags or @mentions. You can install your local version or try an advanced Cloud version on [www.infranodus.com](https://infranodus.com), which includes GPT-3 insight generation, BERT AI sentiment analysis, and more.
 
-### Note, that due to the limited capacity we cannot provide technical support to help you install this open-source version. However, we can provide this help to our subscribers or Patreon patrons. So if you would like to support our work and research, you can [join on Patreon](https://patreon.com/noduslabs) and you will then get both the cloud version access and our technical assistance with your local installation. 
+![](/public/images/infranodus-live-editor.gif "InfraNodus Interface")
 
-#### Keep track of all the connections using this simple tool that converts natural language into graph (English, Russian, French, German are supported, other languages — limited support).
+##
+## Try InfraNodus Online
 
-#### Also use InfraNodus as an interface to your Neo4J database to quickly try out some basic graph constructs using an easy input procedure via natural language, voice-to-text and #hashtags
+[www.infranodus.com](http://infranodus.com) - includes the Pro features, such as GPT-3 AI idea generation tool
 
-=================
+[Watch a Video Demo](https://www.youtube.com/watch?v=0mIT9Ni5SO4) - a 3-minute introduction
 
-![](/public/images/infranodus.gif "InfraNodus Interface")
 
-=================
+## 
+## Features
+* Visualize any text as a network graph
+* Advanced graph analysis algorithms to study text
+* Topic modeling 
+* Most influential terms
+* Advanced text statistics
+* Graph / text comparison
+* Works with English, German, French, Russian, Spanish, Portugese (+ Japanese and Chinese in the cloud version)
+* Use InfraNodus to interface with your Neo4J database and to try some basic graph constructs using an easy input procedure via natural language, voice-to-text, or #hashtags
+
 
 #### Works on mobile and desktop. Voice-to-text (EN, RU, FR, DE) is available.
 
 
-[Watch a Video Demo](https://www.youtube.com/watch?v=0mIT9Ni5SO4) - a 3-minute introduction
 
-[Try it Online](http://infranodus.com) - request invitation code through [Nodus Labs](http://noduslabs.com/infranodus/)
-
-
-
-=================
-
-### The Science and the Method
+## 
+## The Science and the Method
 
 InfraNodus is a non-commercial [venture fiction](https://noduslabs.com/research/venture-fiction/) project. Its main objective is to enhance perception and imagination, although it can also solve concrete problems and offer you an efficient way to retain, process, and make sense of information. It can:
 
@@ -47,11 +51,8 @@ A more precise description of InfraNodus' algorithm is presented in Paranyushkin
 A more easy-to-read article on the tool is published in **[Towards Data Science](https://towardsdatascience.com/measuring-discourse-bias-using-text-network-analysis-9f251be5f6f3)**.
 
 
-
-=================
-
-
-### Introduction
+##
+## Introduction
 
 The basic ideas behind InfraNodus are:
 
@@ -68,10 +69,10 @@ The basic ideas behind InfraNodus are:
 - Your suggestions? (open an issue)
 
 
-=================
 
 
-### Technology
+##
+## Technology
 
 InfraNodus is built on
 
@@ -88,18 +89,22 @@ InfraNodus is built on
 * Open-source code from the people on StackOverflow and Neo4J community;
 
 
-=================
+
+##
+## Installation Guide
+
+If you just want to try out the tool, the best way to do that is to use the [Cloud version of InfraNodus](https://infranodus.com). We only charge €9 towards development and server costs, and it has more capabilities than the open-source version. The cloud version is also connected to multiple AI APIs, such as GPT-3 and BERT sentiment analysis, and can process bigger files faster.  
+
+Note, that due to the limited capacity we cannot provide support for installing the open-source version. However, you can post an Issue to this repository and maybe somebody from the community will be able to respond.
 
 
-### Installation Guide
-
-#### Run on the cloud
+### Run on the cloud
 To run InfraNodus on the cloud, go to [www.infranodus.com](https://infranodus.com). 
 
 
-#### Run directly on your machine
-To use this software you should install Neo4J 3.0 on your local computer.
-To install Neo4J on a Mac use homebrew (see [Neo4J instructions here](http://www.neo4j.org/download)).
+### Run directly on your machine
+To use this software you should install Neo4J 3.3.9 on your local computer (up to 3.5 is supported).
+To install Neo4J on a Mac use homebrew (see [Neo4J instructions here](http://www.neo4j.org/download)) or you can also set up a cloud Neo4J instance on AWS or their own cloud service.
 For settings, check out [How to Set Up Neo4J for InfraNodus](https://github.com/noduslabs/infranodus/wiki/Neo4J-Database-Setup).
 You may also find [other wiki pages](https://github.com/noduslabs/infranodus/wiki/_pages) interesting, especially [Neo4J installation guide](https://github.com/noduslabs/infranodus/wiki/Upgrading-Your-Neo4J-Database-from-2.x-to-3.x) – the section on setting up indexes and installing APOC plugin.
 
@@ -118,9 +123,11 @@ Run the application with
 
 You can access the app from http://localhost:3000
 
-To create an account on your local machine, visit http://localhost:3000/signup?invitation=secretcode - replace `secretcode` with the value of `secrets.invitation` in your `config.json`. In this case, please, consider becoming a patron by signing up on [www.infranodus.com](http://infranodus.com) to support the development of this open source tool. Patrons get fast-track support and help on the technical issues of the installation.
+To create an account on your local machine, visit http://localhost:3000/signup?invitation=secretcode - replace `secretcode` with the value of `secrets.invitation` in your `config.json`. 
 
-#### Run inside a Vagrant Virtual Machine
+When you sign up, please, consider creating an account on [www.infranodus.com](http://infranodus.com) to support the development of this tool. Subscribers get fast-track support and help on the technical issues of the installation.
+
+### Run inside a Vagrant Virtual Machine
 
 1. `git clone` the project
 2. `cd infranodus` to switch into the git project directory
@@ -132,10 +139,9 @@ To create an account on your local machine, visit http://localhost:3000/signup?i
 8. You can access the app from http://192.168.66.101:3000 - if you want a different IP address, change the `ip` setting under `config.vm.network` in the `vagrantfile`.
 9. To create an account on your local machine, visit http://192.168.66.101:3000/signup?invitation=secretcode - replace `secretcode` with the value of `secrets.invitation` in your `config.json`. In this case, please, consider becoming a patron by signing up on [www.infranodus.com](http://infranodus.com) to support the development of this open source tool. Patrons get fast-track support and help on the technical issues of the installation.
 
-=================
 
-
-### Data Model
+##
+## Data Model
 
 The general rationale for the data model used in InfraNodus is outlined in
 * [Cognitive Network Protocol](http://noduslabs.com/research/cognitive-network-protocol/) article (more specific)
@@ -158,20 +164,18 @@ This data model is derived from the [Cognitive Graph DB Model](http://noduslabs.
 The current data model description utilized in InfraNodus app is available in https://github.com/noduslabs/graphdbmodel repository.
 
 
-=================
 
-
-### Mobile Interface
+##
+## Mobile Interface
 
 InfraNodus can also be used on a mobile.
 
-![](/public/images/infranodus-mobile.png "InfraNodus Mobile Interface")
+![](/public/images/infranodus-mobile.jpg "InfraNodus Mobile Interface")
 
 
 
-=================
-
-### Python Port
+##
+## Python Port
 
 Together with Mattias Östmar (who did most of the work) we created a port of InfraNodus in Python, focusing on the measure of network diversity structure that it provides.
 
@@ -180,10 +184,9 @@ You can get it in [DiscourseDiversity](https://gitlab.com/mattiasostmar/discours
 * [InfraNodus in Python](https://gitlab.com/mattiasostmar/discoursediversity)
 
 
-=================
 
-
-### Special Thanks
+##
+## Special Thanks
 
 InfraNodus could not be built without the
 * Help from the people on StackOverflow and Neo4J community;
@@ -193,10 +196,9 @@ Also... :)
 
 
 
-=================
 
-
-### GPL License
+##
+## GPL License
 
 This open source, free software is available under the GNU Affero General Public License version 3 (AGPLv3) license.
 You can make modifications to this code and binaries based on it, but only on the condition that you provide access to those modifications under the same license (including remotely  through a computer network).
