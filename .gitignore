@@ -18,4 +18,5 @@ npm-debug.log*
 # Docker
 deps
 .env
-import
+data
+.vscode

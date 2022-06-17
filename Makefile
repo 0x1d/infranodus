@@ -1,13 +1,15 @@
 SHELL=/bin/bash
 
-targets = ( info init run stop remove dev )
+targets = ( info init build run bootstrap )
 
+ENV_FILE ?= default.env
+DATA_PATH ?= ./data
 
 default: info
-it: init app plugins
+it: init build 
 so: run
 
-${targets}: .env
-	bash -c "source $< ; ./ctl.sh $@ "
+${targets}: ${ENV_FILE}
+	@bash -c "source $< ; ./ctl.sh $@ "
 
 include plugins.mk

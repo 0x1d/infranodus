@@ -1,13 +1,11 @@
 #!/bin/bash
 
 APP=infranodus
-#DATA_PATH=~/.shroud/$APP
+DATA_PATH=./data
 
 ##init          Initialize project
 function init {
-    mkdir -p import
-    cp vagrant/setup-neo4j.sh import
-    cp default.env .env
+    mkdir -p ${DATA_PATH}
     cp config.json.sample config.json
     touch views/statsabove.ejs
     touch views/statsbelow.ejs
@@ -17,9 +15,10 @@ function init {
 ##build         Build with docker-compose
 function build {
     docker-compose build
-    docker-compose exec db bash -c "./import/setup-neo4j.sh"
 }
-
+function bootstrap {
+    docker-compose exec db bash -c "/var/lib/neo4j/bootstrap.sh"
+}
 function run {
     docker-compose up --remove-orphans --force-recreate --detach
     watch docker ps

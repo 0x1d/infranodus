@@ -4,12 +4,12 @@ services:
   ui:
     image: wirelos/infranodus
     build: .
-    env_file: .env
+    env_file: default.env
     ports:
       - 3000:3000
   db:
-    image: neo4j:3.5.8
-    env_file: bootstrap.env
+    image: wirelos/infranodus-db:3.5.8
+    build: ./db/build
     environment:
       - UID=1000
       - GUID=1000
@@ -17,10 +17,10 @@ services:
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
       - NEO4J_apoc_trigger_enabled=true
     volumes:
-      - $HOME/infranodus/conf:/var/lib/neo4j/conf
-      - $HOME/infranodus/data:/data
-      - $PWD/vagrant:/var/lib/neo4j/import
-      - $PWD/deps/plugins:/var/lib/neo4j/plugins
+      - ./data/conf:/var/lib/neo4j/conf
+      - ./data/db:/data
+      #- $PWD/vagrant:/var/lib/neo4j/install
+      #- $DATA_PATH/plugins:/var/lib/neo4j/plugins
     ports:
       - 7474:7474 
       - 7687:7687
