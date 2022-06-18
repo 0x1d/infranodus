@@ -21,7 +21,6 @@ function bootstrap {
 }
 function run {
     docker-compose up --remove-orphans --force-recreate --detach
-    watch docker ps
 }
 
 function stop {
