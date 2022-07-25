@@ -1,7 +1,7 @@
 {
     "neo4j":  {
-        "host": "db:7474",
-        "bolt": "db",
+        "host": "infranodus-db:7474",
+        "bolt": "infranodus-db",
         "username": "neo4j",
         "password": "Really_Secure_Local_Db_Password"
     },
@@ -12,7 +12,7 @@
     },
 
     "infranodus": {
-        "domain": "localhost:3000",
+        "domain": "infranodus.dcentral.systems",
         "default_user": ""
     },
 

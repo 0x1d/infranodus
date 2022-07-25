@@ -1,15 +1,22 @@
 version: '3'
 
 services:
-  ui:
+  infranodus-ui:
+    restart: unless-stopped
     image: wirelos/infranodus
     build: .
     env_file: default.env
-    ports:
-      - 3000:3000
-  db:
+    #ports:
+    #  - 3000:3000
+    labels:
+      - flame.type=application # "app" works too
+      - flame.name=Infranodus
+      - flame.url=https://infranodus.dcentral.systems
+      - flame.icon=network 
+  infranodus-db:
     image: wirelos/infranodus-db:3.5.8
     build: ./db/build
+    restart: unless-stopped
     environment:
       - UID=1000
       - GUID=1000
@@ -21,6 +28,10 @@ services:
       - ./data/db:/data
       #- $PWD/vagrant:/var/lib/neo4j/install
       #- $DATA_PATH/plugins:/var/lib/neo4j/plugins
-    ports:
-      - 7474:7474 
-      - 7687:7687
+    #ports:
+    #  - 7474:7474 
+    #  - 7687:7687
+networks:
+  default:
+    name: grid
+    external: true
